@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+}
+
+<section class="home-content">
+    <h1>@Model.Value("headline")</h1>
+    <p>@Model.Value("description")</p>
+</section>

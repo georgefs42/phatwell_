@@ -1,0 +1,154 @@
+/* General Header Styling */
+.header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    /* Background Styling */
+    .header .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+/* Video Background (for homepage) */
+.video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+/* Image Background (for other pages) */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+/* Navbar Styling */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    z-index: 10;
+}
+
+.logo {
+    padding-left: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .logo:hover {
+        transform: scale(1.1);
+    }
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    justify-content: center; /* Center the items */
+    align-items: center; /* Vertically center the links */
+    margin: 0;
+    padding: 50px;
+}
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 20px;
+        transition: background 0.3s, color 0.3s;
+        border-radius: 5px;
+    }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+/* Specific Styles for Homepage */
+.header.home .background {
+    background-color: transparent; /* Prevents additional background styles on homepage */
+}
+
+/* Specific Styles for Other Pages */
+.header.page .background-image {
+    /* You can add specific styles for non-homepages if necessary */
+    filter: brightness(0.6); /* Example: dim image a little */
+}
+
+/* Hamburger Menu */
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    z-index: 20;
+}
+
+    .menu-icon div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        gap: 15px;
+        width: 200px;
+        padding: 20px;
+        border-radius: 8px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .nav-links.active {
+            transform: translateX(0);
+        }
+
+    .menu-icon {
+        display: flex;
+    }
+}
+
+/* Menu Icon Animation */
+.menu-icon.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-icon.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
