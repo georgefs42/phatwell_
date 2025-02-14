@@ -1,0 +1,76 @@
+/* content-page.css */
+.content-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: left;
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+.content-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+.content-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.content-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    display: inline-block;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .content-title {
+        font-size: 3rem;
+    }
+    .content-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-page {
+        padding: 40px 20px;
+    }
+    .content-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-title {
+        font-size: 2rem;
+    }
+    .content-text {
+        font-size: 0.9rem;
+    }
+}

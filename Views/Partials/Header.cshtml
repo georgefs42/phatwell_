@@ -4,6 +4,8 @@
     var video = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("backgroundVideo"); // Always fetch background video
     var navLinks = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>>("navigationItem");
     var logo = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("logo");
+    var pageTitle = Model.Value<string>("pageTitle"); // Fetch the page title
+    var pageSubtitle = Model.Value<string>("pageSubtitle"); // Fetch the page subtitle
 }
 
 <header class="header">
@@ -14,6 +16,12 @@
                 <source src="@video.Url()" type="video/mp4">
             </video>
         }
+
+        <div class="video-overlay">
+            <h1 class="video-title">@pageTitle</h1> <!-- Use the pageTitle alias -->
+            <p class="video-subtitle">@pageSubtitle</p> <!-- Use the pageSubtitle alias -->
+            <a href="https://open.spotify.com/album/1A4wiFXglHDVHLJ96swv22?si=mNH7gQt2SDy0J1ROunF6cw" class="btn-primary" target="_blank">Listen now</a>
+        </div>
     </div>
 
     <nav class="navbar">

@@ -19,29 +19,53 @@
         z-index: -1;
     }
 
-/* Video Background (for homepage) */
-.video-background video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(0.7);
-}
+        .header .background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7); /* Adjust the brightness if needed */
+        }
 
-/* Image Background (for other pages) */
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(0.7);
-}
+    /* Video Overlay (Title, Subtitle, and Button) */
+    .header .video-overlay {
+        position: absolute;
+        display:flex;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        z-index: 20; /* Ensure it's in front of the video */
+    }
+
+    .header .video-title {
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .header .video-subtitle {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    .header .btn-primary {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .header .btn-primary:hover {
+            background-color: white; /* Hover effect color */
+
+        }
 
 /* Navbar Styling */
 .navbar {
@@ -52,7 +76,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    z-index: 10;
+    z-index: 20; /* Ensures navbar is above the video and overlay */
 }
 
 .logo {
@@ -69,8 +93,8 @@
 /* Navigation Links */
 .nav-links {
     display: flex;
-    justify-content: center; /* Center the items */
-    align-items: center; /* Vertically center the links */
+    justify-content: center;
+    align-items: center;
     margin: 0;
     padding: 50px;
 }
@@ -91,12 +115,6 @@
 /* Specific Styles for Homepage */
 .header.home .background {
     background-color: transparent; /* Prevents additional background styles on homepage */
-}
-
-/* Specific Styles for Other Pages */
-.header.page .background-image {
-    /* You can add specific styles for non-homepages if necessary */
-    filter: brightness(0.6); /* Example: dim image a little */
 }
 
 /* Hamburger Menu */

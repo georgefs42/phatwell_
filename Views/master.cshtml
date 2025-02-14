@@ -10,21 +10,23 @@
     <title>@Model.Value("title") | Phatwell</title>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="~/css/header.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/content-page.css" asp-append-version="true" />
+
 </head>
 <body>
     <!-- Header Section -->
     @await Html.PartialAsync("Partials/Header", Model)
+    
 
     <!-- Main Content Section -->
     <main>
-        @RenderBody()
+        @await Html.PartialAsync("Partials/Content", Model)
+        
     </main>
+    @RenderBody()
 
-    <!-- Footer (Optional) -->
-    <footer class="footer">
-        <p>&copy; @DateTime.Now.Year miraShop. All rights reserved.</p>
-    </footer>
+   @await Html.PartialAsync("Partials/Footer", Model)
 </body>
 </html>
