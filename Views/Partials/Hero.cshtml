@@ -1,17 +1,56 @@
-﻿<body>
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
-    <!-- Header Section -->
-    <div class="header">
-        <video autoplay muted loop>
-            <source src="path_to_your_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+@{
+    var image = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("backgroundImage"); // Changed to image instead of video
+    var navLinks = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>>("navigationItem");
+    var logo = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("logo");
+    var pageTitle = Model.Value<string>("pageTitle");
+    var pageSubtitle = Model.Value<string>("pageSubtitle");
+}
 
-        <div class="header-content">
-            <h1>Welcome to Our Website</h1>
-            <p>Your journey starts here</p>
-            <button onclick="window.location.href='https://yourlink.com'">Get Started</button>
+<header class="site-header">
+    <div class="hero-section">
+        @if (image != null)
+        {
+            <img src="@image.Url()" alt="Background Image" class="hero-image" />
+        }
+
+        <div class="overlay">
+            <div class="text-container">
+                <h1 class="main-title">@pageTitle</h1>
+                <p class="subheading">@pageSubtitle</p>
+            </div>
         </div>
     </div>
 
-</body>
+    <nav class="navbar">
+        @if (logo != null)
+        {
+            <a href="/">
+                <img src="@logo.Url()" alt="Logo" class="logo" />
+            </a>
+        }
+        <!-- Menu Icon for Small Screens -->
+        <span class="menu-icon" id="menu-icon">&#9776;</span>
+        <ul class="nav-links" id="nav-links">
+            @if (navLinks != null)
+            {
+                @foreach (var link in navLinks)
+                {
+                    <li><a href="@link.Url()">@link.Name</a></li>
+                }
+            }
+        </ul>
+    </nav>
+</header>
+
+<!-- Include the JavaScript to toggle the menu on small screens -->
+<script>
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinks = document.getElementById('nav-links');
+
+    menuIcon.addEventListener('click', function () {
+        // Toggle the visibility of the navLinks (for small screens)
+        navLinks.classList.toggle('active');
+    });
+</script>

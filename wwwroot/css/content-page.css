@@ -13,13 +13,13 @@
 }
 
 .content-overlay {
-    background: rgba(0, 0, 0, 0.4);
     padding: 20px;
     max-width: 600px;
     border-radius: 8px;
 }
 
 .content-title {
+    color: black;
     font-size: 4rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -71,6 +71,7 @@
         font-size: 2rem;
     }
     .content-text {
+        margin-top: 10px;
         font-size: 0.9rem;
     }
 }
