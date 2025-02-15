@@ -12,6 +12,7 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="~/css/header.css">
     <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/footer.css">
     <link rel="stylesheet" href="~/css/content-page.css" asp-append-version="true" />
 
 </head>
@@ -27,6 +28,11 @@
     </main>
     @RenderBody()
 
-   @await Html.PartialAsync("Partials/Footer", Model)
+   @await Html.PartialAsync("Partials/Footer")
+
+<!-- JavaScript Files -->
+   <script src="~/scripts/header.js" defer></script>
+
+
 </body>
 </html>

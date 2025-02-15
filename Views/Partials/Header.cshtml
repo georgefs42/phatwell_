@@ -12,15 +12,17 @@
     <div class="background">
         @if (video != null)
         {
-            <video autoplay muted loop>
+            <video autoplay muted loop class="background-video">
                 <source src="@video.Url()" type="video/mp4">
             </video>
         }
 
         <div class="video-overlay">
-            <h1 class="video-title">@pageTitle</h1> <!-- Use the pageTitle alias -->
-            <p class="video-subtitle">@pageSubtitle</p> <!-- Use the pageSubtitle alias -->
-            <a href="https://open.spotify.com/album/1A4wiFXglHDVHLJ96swv22?si=mNH7gQt2SDy0J1ROunF6cw" class="btn-primary" target="_blank">Listen now</a>
+            <div class="content-row">
+                <h1 class="video-title">@pageTitle</h1>
+                <p class="video-subtitle">@pageSubtitle</p>
+                <a href="https://open.spotify.com/album/1A4wiFXglHDVHLJ96swv22?si=mNH7gQt2SDy0J1ROunF6cw" class="btn-primary" target="_blank">Listen now</a>
+            </div>
         </div>
     </div>
 
@@ -31,7 +33,9 @@
                 <img src="@logo.Url()" alt="Logo" class="logo" />
             </a>
         }
-        <ul class="nav-links">
+        <!-- Menu Icon for Small Screens -->
+        <span class="menu-icon" id="menu-icon">&#9776;</span>
+        <ul class="nav-links" id="nav-links">
             @if (navLinks != null)
             {
                 @foreach (var link in navLinks)
@@ -42,3 +46,14 @@
         </ul>
     </nav>
 </header>
+
+<!-- Include the JavaScript to toggle the menu on small screens -->
+<script>
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinks = document.getElementById('nav-links');
+
+    menuIcon.addEventListener('click', function () {
+        // Toggle the visibility of the navLinks (for small screens)
+        navLinks.classList.toggle('active');
+    });
+</script>

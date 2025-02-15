@@ -1,6 +1,38 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
-    <!-- Footer (Optional) -->
-    <footer class="footer">
+@{
+    // Get social media links from Umbraco (Ensure these properties exist in Umbraco Backoffice)
+    var facebookLink = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.Link>>("facebookLink")?.FirstOrDefault()?.Url ?? "";
+    var instagramLink = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.Link>>("instagramLink")?.FirstOrDefault()?.Url ?? "";
+    var youtubeLink = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.Link>>("youtubeLink")?.FirstOrDefault()?.Url ?? "";
+
+    // Creating a dictionary for social media links and their FontAwesome classes
+    var socialLinks = new Dictionary<string, string>
+    {
+        { facebookLink, "fa-brands fa-facebook-f" },
+        { instagramLink, "fa-brands fa-instagram" },
+        { youtubeLink, "fa-brands fa-youtube" }
+    };
+
+    // Filtering out empty links
+    socialLinks = socialLinks.Where(kv => !string.IsNullOrEmpty(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
+}
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="social-icons">
+            @foreach (var link in socialLinks)
+            {
+                <a href="@link.Key" target="_blank" aria-label="@link.Value">
+                    <i class="@link.Value"></i>
+                </a>
+            }
+        </div>
+        </br>
         <p>&copy; @DateTime.Now.Year Phatwell. All rights reserved.</p>
-    </footer>
+    </div>
+</footer>
+
+<!-- FontAwesome 6 CDN -->
+<script src="https://kit.fontawesome.com/034f853cc4.js" crossorigin="anonymous"></script>

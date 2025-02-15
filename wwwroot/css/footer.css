@@ -1,0 +1,67 @@
+/* Footer Styling */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Social Icons Styling */
+.social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+    .social-icons a {
+        text-decoration: none;
+        color: white;
+        font-size: 24px;
+        transition: color 0.3s;
+    }
+
+        .social-icons a:hover {
+            color: #1da1f2; /* Change color on hover (e.g., Twitter blue) */
+        }
+
+    .social-icons i {
+        font-size: 30px;
+        transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover i {
+        transform: scale(1.2);
+    }
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .footer {
+        padding: 15px;
+    }
+
+        .footer p {
+            font-size: 12px;
+        }
+
+    .social-icons a {
+        font-size: 20px;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icons a {
+        font-size: 18px;
+    }
+}
