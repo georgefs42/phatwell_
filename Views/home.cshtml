@@ -1,9 +1,19 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
     Layout = "master.cshtml";
-}
 
-<section class="home-content">
-    <h1>@Model.Value("headline")</h1>
-    <p>@Model.Value("description")</p>
-</section>
+    var backgroundImage = Model.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("backgroundImageContent");
+    var titleContent = Model.Value<string>("titleContent");
+    var bodyText = Model.Value<string>("bodyTextContent");
+}
+<div class="content-page" style="background-image: url('@backgroundImage.MediaUrl()'); background-size: cover; background-position: center;">
+    <div class="content-overlay">
+        <h1 class="content-title">@titleContent</h1>
+        <div class="content-text">
+            @Html.Raw(bodyText)
+            
+                <a href="/About" class="btn btn-primary">Read More</a>
+           
+        </div>
+    </div>
+</div>
