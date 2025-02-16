@@ -1,0 +1,46 @@
+/* Container for the video blocks */
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Space the items evenly */
+    gap: 20px; /* Space between blocks */
+    margin: 1% 10%;
+    padding: 0 10px;
+}
+
+/* Each video block */
+.video-block {
+    width: 100%;
+    max-width: 700px; /* Limiting max width of the video block */
+    text-align: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Ensure iframe is responsive and has a 16:9 aspect ratio */
+.video-block iframe {
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Text styling */
+.video-block h2,
+.video-block p {
+    color: black; /* Make the text black */
+    margin: 10px 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .video-block {
+        width: 100%; /* Full width on smaller screens */
+    }
+}

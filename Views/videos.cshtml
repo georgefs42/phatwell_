@@ -1,57 +1,51 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@{
+    Layout = "master.cshtml";
+}
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models.PublishedContent
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
 
 @{
-    // Define the function to extract the video ID
-    string ExtractYouTubeVideoId(string url)
+    var videos = Model.Value<BlockListModel>("videos");
+}
+
+<div class="video-container">
+    @if (videos != null)
     {
-        var videoId = string.Empty;
-        
-        if (!string.IsNullOrEmpty(url))
+        @foreach (var video in videos)
         {
-            var uri = new Uri(url);
-            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-            
-            // Standard YouTube URL
-            if (query["v"] != null)
+            var title = video.Content.Value<string>("videoTitle");
+            var description = video.Content.Value<string>("videoDescription");
+            var videoUrl = video.Content.Value<string>("videoUrl");
+
+            // Extract the YouTube video ID
+            string videoId = null;
+            var regex = new System.Text.RegularExpressions.Regex(@"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S+)?v=|youtu\.be\/)([a-zA-Z0-9_-]+)");
+            var match = regex.Match(videoUrl);
+
+            if (match.Success)
             {
-                videoId = query["v"];
+                videoId = match.Groups[1].Value;
+            }
+
+            if (!string.IsNullOrEmpty(videoId))
+            {
+                <div class="video-block">
+                    <h2> @Html.Raw(title)</h2>
+                    <p>@Html.Raw(description) </p>
+                    <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/@videoId"
+                            frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
             }
             else
             {
-                // Handle other YouTube formats if necessary
-                var segments = uri.AbsolutePath.Split('/');
-                if (segments.Length > 1 && segments[1] == "watch")
-                {
-                    videoId = query["v"];
-                }
+                <div class="video-block">
+                    <p>Invalid YouTube URL</p>
+                </div>
             }
         }
-        
-        return videoId;
     }
-
-    // Get the block list (videoBlock is the alias of the block list property)
-    var videoBlockList = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.PublishedContent.IPublishedElement>>("videoBlock");
-}
-
-<h1>My YouTube Videos</h1>
-
-@if (videoBlockList != null && videoBlockList.Any())
-{
-    @foreach (var block in videoBlockList)
-    {
-        var videoUrl = block.Value<string>("videoUrl"); // Assuming "videoUrl" is the alias of the URL field
-        var videoId = ExtractYouTubeVideoId(videoUrl); // Call the function to get video ID
-
-        if (!string.IsNullOrEmpty(videoId))
-        {
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/@videoId" frameborder="0" allowfullscreen></iframe>
-            </div>
-        }
-    }
-}
-else
-{
-    <p>No videos available</p>
-}
+</div>
