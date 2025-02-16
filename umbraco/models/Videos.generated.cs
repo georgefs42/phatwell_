@@ -121,12 +121,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[ImplementPropertyType("title")]
 		public virtual string Title => global::Umbraco.Cms.Web.Common.PublishedModels.HeroProperties.GetTitle(this, _publishedValueFallback);
 
-		///<summary>
-		/// Videos
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "15.2.1+649cfca")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("videos")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Videos => global::Umbraco.Cms.Web.Common.PublishedModels.VideosProperties.GetVideos(this, _publishedValueFallback);
-	}
+        ///<summary>
+        /// Videos
+        ///</summary>
+        public virtual Core.Models.Blocks.BlockListModel GetVideos()
+        {
+            return global::Umbraco.Cms.Web.Common.PublishedModels.VideosProperties.GetVideos(this, _publishedValueFallback);
+        }
+    }
 }

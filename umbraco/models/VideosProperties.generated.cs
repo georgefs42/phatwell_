@@ -22,11 +22,9 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Videos Properties</summary>
 	public partial interface IVideosProperties : IPublishedElement
 	{
-		/// <summary>Videos</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "15.2.1+649cfca")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Videos { get; }
-	}
+        /// <summary>Videos</summary>
+        Core.Models.Blocks.BlockListModel GetVideos();
+    }
 
 	/// <summary>Videos Properties</summary>
 	[PublishedModel("videosProperties")]
@@ -57,18 +55,18 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			_publishedValueFallback = publishedValueFallback;
 		}
 
-		// properties
+        // properties
 
-		///<summary>
-		/// Videos
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "15.2.1+649cfca")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("videos")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Videos => GetVideos(this, _publishedValueFallback);
+        ///<summary>
+        /// Videos
+        ///</summary>
+        public virtual Core.Models.Blocks.BlockListModel GetVideos()
+        {
+            return GetVideos(this, _publishedValueFallback);
+        }
 
-		/// <summary>Static getter for Videos</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "15.2.1+649cfca")]
+        /// <summary>Static getter for Videos</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "15.2.1+649cfca")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetVideos(IVideosProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "videos");
 	}
